@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- could put in header.html but there's not much point -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="/public/css/poole.css">
+    <link rel="stylesheet" href="/public/css/syntax.css">
+    <link rel="stylesheet" href="/public/css/hyde.css">
+
+    <!-- TODO meta, title -->
+
+    <!-- Icons -->
+    <!-- link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                   <link rel="shortcut icon" href="/public/favicon.ico" -->
+  </head>
+  <body>
+
+    <!-- TODO: sidebar should be factored out to _includes -->
+    <!-- Also entries in sidebar could be driven by tags if we really wanted -->
+    <div class="sidebar">
+      <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+          <h1>
+            <a href="/">
+              A Test Blog
+            </a>
+          </h1>
+          <p class="lead">A blog about stuff. Made by <a href="https://google.com/whoot" target="_blank">@whoot</a>.</p>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a class="sidebar-nav-item active" href="/">Home</a>
+          <a class="sidebar-nav-item" href="/posts.html">Posts</a>
+
+          <!-- ul style="list-style-type:circle,color:white"-->
+          <ul style="">
+            {% for post in site.posts limit:4  %}
+              <a class="sidebar-nav-item" href="{{post.url}}">{{post.title}}</a>
+            {% endfor %}
+          </ul>
+
+          <a class="sidebar-nav-item" href="/sitemap.html">Site map</a>
+          <a class="sidebar-nav-item" href="/public/download/polygon.json.zip">Download zip</a>
+
+          <span class="sidebar-nav-item">Currently v2.1.0</span>
+        </nav>
+
+        <p>&copy; {{ 'now' | date: "%Y" }}. All rights reserved.</p>
+      </div>
+    </div>
+
+
+    <!-- header -->
+    <div class="container content">
+
+
+      <div >
+        <h2 class="post-title"> {{ page.title %}} </h2>
+      </div>
+
+      {% if page.date %}
+        <div class="post-date">
+          {{ page.date | date: "%B %-d, %Y" }}
+        </div>
+      {% endif %}
+
+      <div>
+      <!-- should be a join, with comma -->
+        {% for tag in page.tags %}
+          {{ tag }} 
+        {% endfor %}
+
+      </div>
+
+      <hr />
+
+      <div>{{content}}</div>
+    </div>
+
+  </body>
+</html>
+
