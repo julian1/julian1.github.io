@@ -21,9 +21,7 @@
       <div class="container sidebar-sticky">
         <div class="sidebar-about">
           <h1>
-            <a href="/">
-              A Test Blog
-            </a>
+            <a href="/">A Test Blog</a>
           </h1>
           <p class="lead">A blog about stuff. Made by <a href="https://google.com/whoot" target="_blank">@whoot</a>.</p>
         </div>
@@ -32,7 +30,6 @@
           <a class="sidebar-nav-item active" href="/">Home</a>
           <a class="sidebar-nav-item" href="/posts.html">Posts</a>
 
-          <!-- ul style="list-style-type:circle,color:white"-->
           <ul style="">
             {% for post in site.posts limit:4  %}
               <a class="sidebar-nav-item" href="{{post.url}}">{{post.title}}</a>
