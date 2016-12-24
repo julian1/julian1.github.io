@@ -5,7 +5,7 @@ layout: about
 
 ![clamps](http://s3.julian1.io/rx100/smaller/DSC01877.JPG)
 
-Toroidal transformers, when first switched on can have up to 60 times inrush to running current. 
+When a toroidal transformer is first switched it can have up to 60 times inrush to running current. 
 
 This circuit protects against inrush current by using a series resistor.
 
