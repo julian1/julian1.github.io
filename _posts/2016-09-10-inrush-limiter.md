@@ -11,9 +11,9 @@ The circuit protects against inrush current by using a series resistor.
 
 A relay controlled by a simple timer shorts the resistor when the toroid has built up its magnetic inductance.
 
-The resistor is an NTC type. This protects the resistor from being destroyed if the relay suffers mechanical failure since the NTC resistance will fall as it heats. 
+The resistor is an NTC type. This protects the resistor from being destroyed if the relay suffers mechanical failure - since the NTC resistance will fall as it heats from the load. 
 
-Under normal operating conditions the NTC stays cool. This allows the circuit to provide resistance and limit inrush even if power is rapidly cycled. 
+Under normal operating conditions the NTC is shorted and stays cool. This allows the circuit to provide resistance and limit inrush even if power is rapidly cycled. 
 
 The timing has been slowed for testing. 
 
