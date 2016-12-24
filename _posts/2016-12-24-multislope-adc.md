@@ -44,7 +44,7 @@ The comparator circuit used to detect the zero cross is also based on a lf411 - 
 
 Verilog test code for the integration sequence looks like this,
 
-```
+{% highlight verilog %}
     begin
         // increment clock
         count <= count + 1;
@@ -67,8 +67,9 @@ Verilog test code for the integration sequence looks like this,
             m_in <= 0;       // for 5V
         end 
     end 
+{% endhighlight %}
+
     
-```
 
 
 ### Issues
