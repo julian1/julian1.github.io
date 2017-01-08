@@ -2,7 +2,6 @@
 title: First pass at a precision multislope ADC 
 layout: about
 
-permalink: index.html
 ---
 
 
@@ -74,7 +73,7 @@ Verilog test code for the integration sequence looks like this,
 
 ### Issues
 
-The scope view (time division 100uS) shows the final stage 2n3904 bjt (yellow trace) level-shifter switches very quickly. However the lf411 configured as the comparator (blue trace) has an output which swings very slowly.  
+The scope view (time division 100uS) shows the final stage 2n3904 bjt (yellow trace) level-shifter switches very quickly. However the lf411 configured as the comparator (blue trace) has an output that swings very slowly.  
 
 
 ![clamps](http://s3.julian1.io/rx100/smaller/DSC02420.JPG)
@@ -84,4 +83,7 @@ Since the voltage slew is well under the capabibility of the of the lf411, it is
 A faster decompensated op-amp should help here. There is probably no need for a very-high input impedance type, since the signal is current buffered by the integrating op-amp. This makes it possible to use an op-amp with a bipolar front end.
 
 The op-amp also needs to have a good tempco to generate stable results.
+
+Also the dg444 only measures 1M ohm resistance on an off channel - when measuered with a multimeter. Perhaps an issue of dg444 leakage from the current that the multimeter generates for performing ohms measurement? 
+
 
