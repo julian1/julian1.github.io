@@ -1,6 +1,6 @@
 ---
 title: Tahune forest walk
-layout: about
+layout: default
 ---
 
 

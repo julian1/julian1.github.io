@@ -1,6 +1,6 @@
 ---
 title: Why jekyll rocks!
-layout: about
+layout: default
 ---
 
 ### Some reasons why Jekyll is great

@@ -1,6 +1,6 @@
 ---
 title: Dolphin views
-layout: about
+layout: default
 ---
 
 

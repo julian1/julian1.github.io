@@ -1,6 +1,6 @@
 ---
 title: First pass at a precision multislope ADC 
-layout: about
+layout: default
 
 ---
 

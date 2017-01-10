@@ -1,6 +1,6 @@
 ---
 title: Inrush limiter for toroidal transformer 
-layout: about
+layout: default
 ---
 
 ![clamps](http://s3.julian1.io/rx100/smaller/DSC01877.JPG)
