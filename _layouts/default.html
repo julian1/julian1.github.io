@@ -31,7 +31,7 @@
           <a class="sidebar-nav-item" href="/posts.html">Posts</a>
 
           <ul style="">
-            {% for post in site.posts limit:5  %}
+            {% for post in site.posts limit:7  %}
               <a class="sidebar-nav-item" href="{{post.url}}">{{post.title}}</a>
             {% endfor %}
           </ul>
@@ -50,7 +50,6 @@
     <!-- header -->
     <div class="container content">
 
-
       <div >
         <h2 class="post-title"> {{ page.title %}} </h2>
       </div>
@@ -59,6 +58,10 @@
         <div class="post-date">
           {{ page.date | date: "%B %-d, %Y" }}
         </div>
+      {% else %}
+        <div class="post-date">
+        {{ 'now' | date: "%Y" }}
+        </div>
       {% endif %}
 
       <div>
@@ -66,17 +69,17 @@
         {% for tag in page.tags %}
           {{ tag }} 
         {% endfor %}
-
       </div>
 
       <hr />
 
       <div>{{content}}</div>
+
     </div>
 
     <!-- analytics -->
     {% if jekyll.environment == 'production' %}
-    {% include analytics.html %}
+      {% include analytics.html %}
     {% endif %}
   </body>
 </html>
