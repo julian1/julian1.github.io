@@ -14,11 +14,11 @@ And while flashing the device is easy - it is not immediately obvious how to com
 
 One option is to use a [Bus-pirate](http://dangerousprototypes.com/docs/Bus_Pirate) which connects to the development box using USB and presents a UART interface. This makes it possible to use a serial/terminal program to communicate with the Bus-pirate and to configure it to issue SPI commands to the fpga using the fpga's gpio.
 
-However it is frustrating to need to resort to using another device - especially when the Icestick already has an on-board USB controller!
+However, it is frustrating to resort to using another device - when the Icestick already has an on-board USB controller!
 
-One feature of the Icestick's FT2232H USB controller is that it contains not one, but two high speed USB to multipurpose UART/FIFO channels. And the Icestick board designers thoughtfully wired up the second channel to one of the fpga IO banks.
+One feature of the FT2232H is that it contains not one, but two high speed USB to multipurpose UART/FIFO channels. And the Icestick board designers thoughtfully wired up the second channel to one of the fpga IO banks.
 
-So in theory it should be possible to use the on-board FT2232H to perform SPI communication directly with the fpga as well program the bitstream.
+So it should be possible to appropriate the second channel for SPI communication with the fpga.
 
 
 ### Can FT2223H Channel-A be used for both programming and communicating?
@@ -120,7 +120,7 @@ The following C excerpt shows the code used to drive the FT2232H to send the SPI
 {% endhighlight %}
 
 
-Success! We can now successfully control the on-board LED, using the Icestick USB connection that we also used to program the on-board flash.  
+Success! We can now successfully control the Icestick on-board LED, over the same USB connection that we used to program the on-board flash.  
 
-Code to follow.
+Complete code to follow.
 
