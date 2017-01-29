@@ -82,7 +82,7 @@ set_io sclk     9 #       rx ttl,     38,   us0     mosi
 The next step was to implement the Verilog code for the SPI slave. My SPI slave code follows the example code at [fpga4fun](https://fpga4fun.com/SPI2.html) which handles the system and SPI clock domain crossing.
 
 
-The Verilog consists of a simple SPI command processor. It takes a byte - either 0xcc or 0xdd and turns a LED on and off in response,
+The Verilog SPI target is a simple command processor. It takes a single byte - either 0xcc or 0xdd and turns a LED on and off in response,
 
 {% highlight verilog %}
   always @(posedge clk)
