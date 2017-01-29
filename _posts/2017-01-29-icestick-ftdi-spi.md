@@ -1,37 +1,54 @@
 ---
-title: Using the Icestick on-board FT2232H for SPI communication with an fpga after flashing
+title: Using the Icestick on-board USB controller for fpga SPI communication as well as flashing
 layout: default
 ---
 
-The ICE40 Icestick and ICE40 8K breakout board use a FT2232H Multipurpose UART/FIFO IC in order to write the fpga bitstream to the onboard flash over a simple usb cable.
-
-Unfortunately, communicating with the fpga after flashing is not quite as simple. I have taken to using a [Bus-pirate](http://dangerousprototypes.com/docs/Bus_Pirate) which enables me to issue SPI commands at the fpga from my development laptop.
-
-One nice aspect of the on-board FT2232H is that it contains not one, but dual High Speed USB to Multipurpose UART/FIFO channels. And thoughtfully, the designers of the boards wired the second channel up to the IO banks of the fpga.
-
-That means that it should be possible to use the on-board FT2232H to flash as well as talk directly to the fpga all over a simple USB cable.
+![board](/public/images/icestick/DSC02689.JPG)
 
 
-### Is it possible to use Channel-A for both programming and communicating?
+The Lattice iCEstick allows rapid prototyping of the iCE40 FPGA family and has an easy to use USB thumb drive form factor. 
 
-Before starting to look at using the FT2223H's second channel, I wondered if it was possible to use the ftdi A Channel for both flash programming as well as communicating with the fpga.
+The device incorporates FTDI's FT2232H multipurpose USB to UART/FIFO IC to allow writing the fpga bitstream to flash. 
 
-pic of msco
+And while flashing the device is easy - it is not immediately obvious how to communicate with the fpga after programming it. 
 
-Looking at the FTDi ic shows that pin 19 is not-connected. Ordinarily it would be the FTDI's SPI chip-select but instead pin 21 - a GPIO output has been appropriated for CS. This means that the programmer must manually drive the chip-select. However the extra additional has the advantage that it becomes possible to use different GPIO pins for different chip-selects for multiplexing different ICs.
+One option is to use a [Bus-pirate](http://dangerousprototypes.com/docs/Bus_Pirate) which connects to the development box using USB and presents a UART interface. This makes it possible to use a serial/terminal program to communicate with the Bus-pirate and to configure it to issue SPI commands to the fpga using the fpga's gpio.
 
-So it looks like we could use another GPIO pin for fpga CS instead of flash. Unfortunately checking the schematic shows the other connected GPIO have also been dedicated - to implement fpga reset and for singalling the finish of configuration loading. With no other pins available - we instead must consider using Channel B instead.
+However it is frustrating to need to resort to using another device - especially when the Icestick already has an on-board USB controller!
+
+One feature of the Icestick's FT2232H USB controller is that it contains not one, but two high speed USB to multipurpose UART/FIFO channels. And the Icestick designers thoughtfully wired up the second channel to one of the fpga IO banks.
+
+So in theory it should be possible to use the on-board FT2232H to perform SPI communication directly with the fpga as well as to flash the bitstream.
 
 
-### Programming Channel B of the FT2223H
+### Can FT2223H Channel-A be used for both programming and communicating?
+
+Before looking at using the FT2223H's second channel, I wondered if it was possible to use the FT2232H first channel (Channel A) for flash programming as well as communicating with the fpga.
+
+![board](/public/images/icestick/DSC02711.JPG)
+
+A look at the Icestick schematic from the user manual shows that pin 19 (ADBUS3) is not-connected. According to FTDI documentation it would ordinarily be used for the SPI chip-select. Instead the Icestick designers chose to appropriate pin 21 - the first GPIO output for CS. 
+
+This means that the programmer must manually toggle the chip-select instead of having the FT2223H hardware do it whenever a write is made. However the advantage is that it becomes possible to use different GPIO pins for different chip-selects to support multiplexing different ICs which would open the possibility of multiplexing the fpga.
+
+Unfortunately the schematic also reveals that the only other connected FT2223H GPIO pins available are dedicated to non-GPIO fpga functionality - to implement fpga reset (ICE_CREST)and for signalling the finish of configuration loading (ICE_CDONE). Without any other pins - we must instead consider using Channel B instead.
+
+
+### Using Channel B of the FT2223H
+
+
+![board](/public/images/icestick/DSC02714.JPG)
 
 The Icestick user mannual shows the FT2223H Channel B output connected to bank 3 of the fpga. The pin names follow a uart convention (rx/tx ttl etc) but that shouldn't matter.
 
-The first step was to write some simple verilog to connect the expected input pins up to the board LEDs. That way I could try to programmatically control the FT2223H and toggle the fpga pins and check that the LEDs would light.
+The first step was to write some simple verilog to connect the expected input pins up to the board LEDs. This would make it possible to try programmatically controling the FT2223H and toggling the fpga inputs and then confirming the expected behavior by observing the LEDs.
 
-For programming the FTDI I used the libftdi USB library. As well reading FTDI own documentation, Clifford Wolf's Icestrom flash programmer [iceprog.c](https://github.com/cliffordwolf/icestorm/blob/master/iceprog/iceprog.c) provided a jump-start for some of the C code. 
 
-The main thing is to put the ftdi device into MPSSE mode, which allows it to speak many different protocols such as SPI as well as I2C, and more.
+### Programming the FT2223H using libftdi
+
+For programming the FT2232H I used the FTDI's libftdi USB library on linux. As well reading FTDI's documentation, Clifford Wolf's Icestrom flash programmer [iceprog.c](https://github.com/cliffordwolf/icestorm/blob/master/iceprog/iceprog.c) provided a jump-start for some of the C code. 
+
+The main thing is to put the ftdi device into MPSSE mode instead of uart mode. This allows it to speak many different protocols such as SPI as well as I2C, and more.
 
 
 {% highlight C %}
@@ -43,10 +60,10 @@ The main thing is to put the ftdi device into MPSSE mode, which allows it to spe
 {% endhighlight %}
 
 
-After some experimentation, I was able to control the gpio pins of the FTDI connected to the fpga and see the expected result LED light. Additionally, when doing some FTDI's serial writes I say activity on the sclk and miso LEDs as the serial data was piped on the fpga pins.
+After some experimentation, I was able to control the gpio pins of the FTDI connected to the fpga and see the expected LEDs light up. Trying some serial writes also showed activity on the sclk and miso LEDs as data was piped across the fpga pins.
 
 
-The following mappings were then chosed for synthesis contraints file.  
+The following mappings were confirmed for the synthesis contraints.  
 
 {% highlight code %}
 
@@ -61,12 +78,12 @@ set_io sclk     9 #       rx ttl,     38,   us0     mosi
 {% endhighlight %}
 
 
-### Using the Channel-B for communicating
+### FPGA Verilog code for slave SPI
 
-The next step was to implement the Verilog code for the SPI slave. I stuck to some simple example code at [fpga4fun](https://fpga4fun.com/SPI2.html) which implement the clock domain crossing.
+The next step was to implement the Verilog code for the SPI slave. My SPI slave code follows the example code at [fpga4fun](https://fpga4fun.com/SPI2.html) which handles the system and SPI clock domain crossing.
 
 
-A simple command processor takes a byte - either 0xcc or 0xdd and turns a led off or on,
+The Verilog consists of a simple SPI command processor. It takes a byte - either 0xcc or 0xdd and turns a LED on and off in response,
 
 {% highlight verilog %}
   always @(posedge clk)
@@ -82,4 +99,29 @@ A simple command processor takes a byte - either 0xcc or 0xdd and turns a led of
 
 {% endhighlight %}
 
+
+### libftdi C code for driving the FT2232H
+
+The following C excerpt shows the code used to drive the FT2232H to send the SPI commands from the development laptop.
+
+{% highlight C %}
+   // assert CS - active low 
+    set_gpio(0, 1, 1);
+
+    if(led_value == 1)
+      data[0] = 0xcc;
+    else if(led_value == 0)
+      data[0] = 0xdd;
+
+    // write
+    send_spi( data, 1 );
+
+    // deassert CS
+    set_gpio(1, 1, 1);
+{% endhighlight %}
+
+
+Success! We can now successfully control the on-board LED, using the same USB bus that we use to program the on-board flash.  
+
+Code to follow.
 

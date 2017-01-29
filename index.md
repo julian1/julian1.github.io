@@ -1,1 +1,1 @@
-./_posts/2017-01-18-2dw232-circuit-6.md
+_posts/2017-01-29-icestick-ftdi-spi.md
