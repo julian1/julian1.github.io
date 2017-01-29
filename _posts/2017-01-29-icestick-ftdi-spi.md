@@ -16,9 +16,9 @@ One option is to use a [Bus-pirate](http://dangerousprototypes.com/docs/Bus_Pira
 
 However it is frustrating to need to resort to using another device - especially when the Icestick already has an on-board USB controller!
 
-One feature of the Icestick's FT2232H USB controller is that it contains not one, but two high speed USB to multipurpose UART/FIFO channels. And the Icestick designers thoughtfully wired up the second channel to one of the fpga IO banks.
+One feature of the Icestick's FT2232H USB controller is that it contains not one, but two high speed USB to multipurpose UART/FIFO channels. And the Icestick board designers thoughtfully wired up the second channel to one of the fpga IO banks.
 
-So in theory it should be possible to use the on-board FT2232H to perform SPI communication directly with the fpga as well as to flash the bitstream.
+So in theory it should be possible to use the on-board FT2232H to perform SPI communication directly with the fpga as well program the bitstream.
 
 
 ### Can FT2223H Channel-A be used for both programming and communicating?
@@ -27,7 +27,7 @@ Before looking at using the FT2223H's second channel, I wondered if it was possi
 
 ![board](/public/images/icestick/DSC02711.JPG)
 
-A look at the Icestick schematic from the user manual shows that pin 19 (ADBUS3) is not-connected. According to FTDI documentation it would ordinarily be used for the SPI chip-select. Instead the Icestick designers chose to appropriate pin 21 - the first GPIO output for CS. 
+A look at the Icestick schematic from the user manual shows that pin 19 (ADBUS3) is not-connected. According to FTDI documentation it would ordinarily be used for the SPI chip-select. Instead the Icestick board designers chose to appropriate pin 21 - the first GPIO output for CS. 
 
 This means that the programmer must manually toggle the chip-select instead of having the FT2223H hardware do it whenever a write is made. However the advantage is that it becomes possible to use different GPIO pins for different chip-selects to support multiplexing different ICs which would open the possibility of multiplexing the fpga.
 
@@ -39,9 +39,9 @@ Unfortunately the schematic also reveals that the only other connected FT2223H G
 
 ![board](/public/images/icestick/DSC02714.JPG)
 
-The Icestick user mannual shows the FT2223H Channel B output connected to bank 3 of the fpga. The pin names follow a uart convention (rx/tx ttl etc) but that shouldn't matter.
+The Icestick user mannual shows the FT2223H Channel B output connected to bank 3 of the fpga. The pin names follow a uart convention (rx/tx ttl etc) but that shouldn't matter so long as we can put the FT2223H in SPI rather than uart mode.
 
-The first step was to write some simple verilog to connect the expected input pins up to the board LEDs. This would make it possible to try programmatically controling the FT2223H and toggling the fpga inputs and then confirming the expected behavior by observing the LEDs.
+The first step was to write some simple verilog to connect the expected input pins up to the board LEDs. This would make it possible to try programmatically controling the FT2223H and toggling the fpga inputs and observing the LEDs to confirm behavior.
 
 
 ### Programming the FT2223H using libftdi
@@ -60,10 +60,9 @@ The main thing is to put the ftdi device into MPSSE mode instead of uart mode. T
 {% endhighlight %}
 
 
-After some experimentation, I was able to control the gpio pins of the FTDI connected to the fpga and see the expected LEDs light up. Trying some serial writes also showed activity on the sclk and miso LEDs as data was piped across the fpga pins.
+After some experimentation, I was able to control the gpio pins of the FTDI and see the expected LEDs light up. Trying some serial writes also showed activity on the sclk and miso LEDs as data was piped across the fpga pins.
 
-
-The following mappings were confirmed for the synthesis contraints.  
+The following IO mappings were confirmed as the synthesis contraints.  
 
 {% highlight code %}
 
