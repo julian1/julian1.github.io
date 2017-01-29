@@ -120,7 +120,7 @@ The following C excerpt shows the code used to drive the FT2232H to send the SPI
 {% endhighlight %}
 
 
-Success! We can now successfully control the on-board LED, using the same USB bus that we use to program the on-board flash.  
+Success! We can now successfully control the on-board LED, using the Icestick USB connection that we also used to program the on-board flash.  
 
 Code to follow.
 
