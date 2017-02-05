@@ -1,5 +1,5 @@
 ---
-title: Using the Icestick on-board USB controller for fpga SPI communication as well as flashing
+title: Using the Icestick USB controller for fpga SPI communications as well as flashing
 layout: default
 ---
 
