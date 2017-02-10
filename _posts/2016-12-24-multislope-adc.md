@@ -5,7 +5,7 @@ layout: default
 ---
 
 
-![clamps](http://s3.julian1.io/rx100/smaller/DSC02417.JPG)
+![pic](/public/images/adc/DSC02493.JPG)
 
 
 A [multislope ADC](https://en.wikipedia.org/wiki/Integrating_ADC) is built around an [integrating op-amp](https://en.wikipedia.org/wiki/Op_amp_integrator). A runup phase integrates the input signal for a fixed count. The input is then switched to a known reference voltage for a run-down phase. 
