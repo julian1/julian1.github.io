@@ -5,6 +5,7 @@ layout: default
 
 ![pic](/public/images/2420/DSC02909.JPG)
 
+
 The Keithley 2400 line of SourceMeters combine three instruments in one,
 
 - A fast and precise 6.5 digit DMM, with ability to measure voltages, currents and resistance.
@@ -18,15 +19,20 @@ The SourceMeter was purchased, "for parts or not working". An attached service n
 
 The instrument is easily dissassembled by removing of a few strategic chassis bolts. The interal layout is clean and well organised, and there is plenty of quality alumnium case-work on show.
 
-Both top analog and lower digital/power boards appear to be in good general condition. There are no bulging electrolytics, no burnt tantalums, and no signs of capacitor PCB leakage.
+Both top analog and lower digital/power boards appear to be in good general condition. 
+
+
+![pic](/public/images/2420/DSC02721.JPG)
+
+There are no bulging electrolytics, no burnt tantalums, and no signs of capacitor PCB leakage.
 
 
 The main 3.15A (slowblo) fuse is intact and the CMOS battery shows 3V.
 
-![pic](/public/images/2420/DSC02797.JPG)
 
 Access to the lower power-board is obtained after removing the upper board consisting of the analog and output sections.
 
+![pic](/public/images/2420/DSC02797.JPG)
 
 
 ### Power supplies
