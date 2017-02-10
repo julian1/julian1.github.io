@@ -122,5 +122,5 @@ The following C excerpt shows the code used to drive the FT2232H to send the SPI
 
 Success! We can now successfully control the Icestick on-board LED, over the same USB connection that we used to program the on-board flash.  
 
-Complete code to follow.
+working but rough example code [here](https://github.com/julian1-testing/ice40-spi).
 
