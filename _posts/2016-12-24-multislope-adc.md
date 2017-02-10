@@ -1,16 +1,14 @@
 ---
 title: First pass at a precision multislope ADC 
 layout: default
-
 ---
-
 
 ![pic](/public/images/adc/DSC02493.JPG)
 
 
 A [multislope ADC](https://en.wikipedia.org/wiki/Integrating_ADC) is built around an [integrating op-amp](https://en.wikipedia.org/wiki/Op_amp_integrator). A runup phase integrates the input signal for a fixed count. The input is then switched to a known reference voltage for a run-down phase. 
 
-The measurement is derived from the clock count at the time of a zero-crossing. Because the two phases work in opposite directions, any component parasitics will cancel to produce very accurate measurements. 
+The measurement is derived from the clock count at the time of a zero-crossing. Because the two phases work in opposite directions, component parasitics cancel to produce very accurate measurements. 
 
 ### Multi-slope ADC advantages
 
