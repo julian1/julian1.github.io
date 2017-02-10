@@ -1,1 +1,1 @@
-_posts/2017-01-29-icestick-ftdi-spi.md
+./_posts/2017-02-05-keithley-repair.md

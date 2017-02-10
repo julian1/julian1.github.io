@@ -12,7 +12,7 @@ The Keithley 2400 line of SourceMeters combine,
 - And since it's four-quadrant power unit, it can not only source but also sink current, acting as active load.
 
 
-The SourceMeter was purchased, "for parts or not working". An attached service note warned the power-board is burned and not to plug-in the instrument.
+The SourceMeter was purchased, "for parts or not working". An attached service note warned the power-board is burned and not to plug-in.
 
 ### First observations
 
