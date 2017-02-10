@@ -16,7 +16,7 @@ The SourceMeter was purchased, "for parts or not working". An attached service n
 
 ### First observations
 
-The unit is easily dissassembled by removing of a few strategic chassis bolts. The interal layout is clean and well organised, and there is plenty of nice alumnium case work on show.
+The unit is easily dissassembled by removing of a few strategic chassis bolts. The interal layout is clean and well organised, and there is plenty of quality alumnium case-work on show.
 
 Both top analog and lower digital/power boards appear to be in good general condition. There are no bulging electrolytics, no burnt tantalums, and no signs of capacitor PCB leakage.
 
@@ -157,7 +157,7 @@ The oscilloscope shows the improvement in gate switching,
 ![pic](/public/images/2420/DSC02876.JPG)
 
 
-Now when the board is powered again - the mosfets run without dramatic over-heating and with only passive cooling.
+When the board is powered up again - the mosfets run without dramatic over-heating and using only passive cooling.
 
 The 24V rail that was previously dropping out is also stable.
 
@@ -171,18 +171,18 @@ Apart from the board power supplies, I have no idea about the condition of the d
 
 I decided it would be good to check what difference the fan would make and reconnected it.
 
-Even without the rest of the case assembly to ensure a directed airflow, the fan proved surprisingly effective. 
+Even without the the full case assembly to ensure ducted airflow, the fan is quite effective. 
 
-The first mosfet (closest to the fan) now read a temperature below 30C, and the other stayed around 35C.
+The first mosfet (closest to the fan) reads below 30C, and the second sits about 35C.
 
-Until this point, I wanted to revert to the original TSC426 to further improve gate-drive. However, I then noticed the ICL7667 chip had a datecode prior to the instrument's manufacture date. The part's age suggests that Keithley are responsible for making the substitution at the time of manufacture.
+Until this point, I had wanted to revert to the original TSC426 to further improve gate-drive. However, noticed the ICL7667 chip had a datecode prior to the instrument's manufacture date. That suggests Keithley are likely responsible for the substitution during manufacture.
 
-With the improvements obtained by lowering the gate resistors, and with the reconnecting fan, I decided the mosfet temperatures were probably now OK. 
+With the improvements from lowering the gate resistor values, and from active cooling, I decide the temperatures are probably OK. 
 
 
 ![pic](/public/images/2420/DSC02904.JPG)
 
-So it was time to reassemble everything back together.
+Time to reassemble everything.
 
-After chasing down an unconnected flex that had been overlooked, the SourceMeter can source voltage!
+After chasing down an forgotten flex that had been overlooked, the SourceMeter is now capable of sourcing voltage again!
 
