@@ -6,7 +6,7 @@ layout: default
 ![pic](/public/images/2420/DSC02909.JPG)
 
 
-The Keithley 2400 line of SourceMeters combine three instruments in one,
+The Keithley 2400 line of SourceMeters combine three instruments in one <sup>1</sup>,
 
 - A fast and precise 6.5 digit DMM, with ability to measure voltages, currents and resistance.
 - A precision power source, with adjustable compliance levels (limits) for both voltage and current.
@@ -191,4 +191,7 @@ With the improvements from lowering the gate resistor values, and from active co
 Time to reassemble everything.
 
 After chasing down an forgotten flex that had been overlooked, the SourceMeter is now capable of sourcing voltage again!
+
+---
+<sup>1</sup> [TiN from eevblog](http://www.eevblog.com/forum/testgear/keithley-2400-sourcemeter-review-and-teardown/) has a great description of the key features.
 
