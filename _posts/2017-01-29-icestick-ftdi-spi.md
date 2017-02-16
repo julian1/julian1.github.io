@@ -41,7 +41,7 @@ Unfortunately the schematic also reveals that the only other connected FT2223H G
 
 The Icestick user mannual shows the FT2223H Channel B output connected to bank 3 of the fpga. The pin names follow a uart convention (rx/tx ttl etc) but that shouldn't matter so long as we can put the FT2223H in SPI rather than uart mode.
 
-The first step was to write some simple verilog to connect the expected input pins up to the board LEDs. This would make it possible to try programmatically controling the FT2223H and toggling the fpga inputs and observing the LEDs to confirm behavior.
+The first step is to write some simple verilog to connect the expected input pins up to the board LEDs. This should make it possible to try programmatically controlling the FT2223H and toggling the fpga inputs while observing the LEDs to confirm behavior.
 
 
 ### Programming the FT2223H using libftdi
