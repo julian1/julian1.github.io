@@ -1,1 +1,1 @@
-./_posts/2017-02-05-keithley-repair.md
+./_posts/2017-02-16-2dw232-circuit-7.md
