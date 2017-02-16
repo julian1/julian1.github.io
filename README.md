@@ -2,6 +2,9 @@
 
 ### TODO
 
+then link github.  maybe youtube
+
+done - @julian1 -> link to about-me.md,
 done - fix aliases after changing link with 2dw 
 done - check images/adc alias 
 

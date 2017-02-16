@@ -17,7 +17,7 @@ The SourceMeter was purchased, "for parts or not working". An attached service n
 
 ### First observations
 
-The instrument is easily dissassembled by removing of a few strategic chassis bolts. The interal layout is clean and well organised, and there is plenty of quality alumnium case-work on show.
+The instrument is easily dissassembled by removing of a few strategic chassis bolts. The interal layout is clean and well organised, and there is plenty of quality alumnium case-work.
 
 Both top analog and lower digital/power boards appear to be in good general condition. 
 
