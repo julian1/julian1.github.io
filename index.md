@@ -1,1 +1,1 @@
-./_posts/2017-02-16-2dw232-circuit-7.md
+./_posts/2017-02-25-2dw232-circuit-8.md
