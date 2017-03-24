@@ -1,4 +1,7 @@
 
+### updating index.md
+
+ln -s  _posts/2017-03-24-2dw232-circuit-9.md index.md    _#
 
 ### TODO
 
